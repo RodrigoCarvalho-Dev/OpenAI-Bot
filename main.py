@@ -9,6 +9,10 @@ bot = OpenAI(
     api_key=str(os.getenv("SECRET_KEY"))
 )
 
+@app.route("/", methods=["GET"])
+def index():
+    return "Olá, bem vindo ao bot da OpenAI!"
+
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
