@@ -4,6 +4,8 @@ import os
 
 app = Flask(__name__)
 
+port = int(str(os.getenv("PORT")))
+
 bot = OpenAI(
     base_url="https://api.openai.com",
     api_key=str(os.getenv("SECRET_KEY"))
@@ -23,4 +25,4 @@ def chat():
     return jsonify({'response': response})
 
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(host="0.0.0.0", port=port)
