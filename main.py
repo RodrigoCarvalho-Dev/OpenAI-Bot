@@ -1,19 +1,18 @@
 from flask import Flask, request, jsonify
-from app.bot.bot import OpenAI
 import os
+from app.bot.bot import GeminiBot
 
 app = Flask(__name__)
 
 port = int(str(os.getenv("PORT")))
 
-bot = OpenAI(
-    base_url="https://api.openai.com",
+bot = GeminiBot(
     api_key=str(os.getenv("SECRET_KEY"))
 )
 
 @app.route("/", methods=["GET"])
 def index():
-    return "Olá, bem vindo ao bot da OpenAI!"
+    return "bem vindo ao bot da SechPay"
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -25,4 +24,4 @@ def chat():
     return jsonify({'response': response})
 
 if __name__ == '__main__':
-   app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
